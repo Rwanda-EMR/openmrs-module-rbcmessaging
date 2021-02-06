@@ -29,16 +29,16 @@ public class RBCMessagingModuleServiceImpl extends BaseOpenmrsService implements
 	private RBCMessagingModuleDAO dao;
 	
 	/**
-     * @param dao the dao to set
-     */
-    public void setDao(RBCMessagingModuleDAO dao) {
-	    this.dao = dao;
-    }
-    
-    /**
-     * @return the dao
-     */
-    public RBCMessagingModuleDAO getDao() {
-	    return dao;
-    }
+	 * @param dao the dao to set
+	 */
+	public void setDao(RBCMessagingModuleDAO dao) {
+		this.dao = dao;
+	}
+	
+	/**
+	 * @return the dao
+	 */
+	public RBCMessagingModuleDAO getDao() {
+		return dao;
+	}
 }

@@ -16,7 +16,7 @@ package org.openmrs.module.rbcmessaging.api.db;
 import org.openmrs.module.rbcmessaging.api.RBCMessagingModuleService;
 
 /**
- *  Database methods for {@link RBCMessagingModuleService}.
+ * Database methods for {@link RBCMessagingModuleService}.
  */
 public interface RBCMessagingModuleDAO {
 	

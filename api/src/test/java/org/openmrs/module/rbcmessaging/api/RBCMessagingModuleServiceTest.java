@@ -21,7 +21,7 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
 /**
  * Tests {@link ${RBCMessagingModuleService}}.
  */
-public class  RBCMessagingModuleServiceTest extends BaseModuleContextSensitiveTest {
+public class RBCMessagingModuleServiceTest extends BaseModuleContextSensitiveTest {
 	
 	@Test
 	public void shouldSetupContext() {

@@ -6,31 +6,37 @@
 	<id>${project.parent.artifactId}</id>
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
-	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
-	<author>rbailly</author>
+	<package>${project.parent.groupId}.${project.parent.artifactId}
+	</package>
+	<author>Bailly RURANGIRWA</author>
 	<description>
 		${project.parent.description}
 	</description>
-	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
+	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf
+	</updateURL>
 	<require_version>${openMRSVersion}</require_version>
 	<!-- / Module Properties -->
 
-	
+	<require_modules>
+		<require_module>org.openmrs.module.reporting</require_module>
+	</require_modules>
 	<!-- Module Activator -->
-	<activator>${project.parent.groupId}.${project.parent.artifactId}.RBCMessagingModuleActivator</activator>
-	
-	
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.RBCMessagingModuleActivator
+	</activator>
+
+
 	<!-- Adds link to admin page -->
 	<extension>
 		<point>org.openmrs.admin.list</point>
-		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
+		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList
+		</class>
 	</extension>
-	
+
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-				
+
 		RBCMessagingModule.hbm.xml
-				
+
 	</mappingFiles>
 
 	<!-- Internationalization -->
