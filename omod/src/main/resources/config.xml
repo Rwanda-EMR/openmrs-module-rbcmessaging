@@ -6,38 +6,77 @@
 	<id>${project.parent.artifactId}</id>
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
-	<package>${project.parent.groupId}.${project.parent.artifactId}
-	</package>
+	<package>org.openmrs.module.rbcmessaging</package>
 	<author>Bailly RURANGIRWA</author>
 	<description>
 		${project.parent.description}
 	</description>
-	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf
-	</updateURL>
-	<require_version>${openMRSVersion}</require_version>
+	<!-- <updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL> -->
+	<require_version>${openmrsPlatformVersion}</require_version>
 	<!-- / Module Properties -->
 
-	<require_modules>
-		<require_module>org.openmrs.module.reporting</require_module>
-	</require_modules>
 	<!-- Module Activator -->
-	<activator>${project.parent.groupId}.${project.parent.artifactId}.RBCMessagingModuleActivator
-	</activator>
+	<activator>org.openmrs.module.rbcmessaging.RBCMessagingModuleActivator	</activator>
 
 
-	<!-- Adds link to admin page -->
+	<!-- Extensions -->
 	<extension>
 		<point>org.openmrs.admin.list</point>
-		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList
-		</class>
+		<class>org.openmrs.module.rbcmessaging.extension.html.AdminList</class>
 	</extension>
+
+	<aware_of_modules>
+		<aware_of_module>org.openmrs.module.legacyui</aware_of_module>
+	</aware_of_modules>
 
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 
-		RBCMessagingModule.hbm.xml
+		RBCMessagingMessage.hbm.xml
 
 	</mappingFiles>
+	
+		<globalProperty>
+		<property>rbcmessaging.messagingConfig</property>
+		<defaultValue></defaultValue>
+		<description>
+			A JSON configuration showing the number of days before
+			sending an SMS reminder for each appointment service and the actual
+			message text to send.
+		</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>rbcmessaging.birthdayWishes</property>
+		<defaultValue></defaultValue>
+		<description>
+			The message to send as birthday wishes.
+		</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>rbcmessaging.postURL</property>
+		<defaultValue></defaultValue>
+		<description>RapidPro URL to post to</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>rbcmessaging.Authorization</property>
+		<defaultValue></defaultValue>
+		<description>RapidPro API Token</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>rbcmessaging.phoneAttribute</property>
+		<defaultValue></defaultValue>
+		<description>Name of the Person Attribute Type used to record phone contacts for patients during registration</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>rbcmessaging.countryCode</property>
+		<defaultValue></defaultValue>
+		<description>Phone Country Code (eg. +251 For EThiopia or +250 For Rwanda)</description>
+	</globalProperty>
 
 	<!-- Internationalization -->
 	<!-- All message codes should start with ${project.parent.artifactId}. -->

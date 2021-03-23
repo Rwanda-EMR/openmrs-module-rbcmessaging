@@ -24,16 +24,16 @@
 	<bean parent="serviceContext">
 		<property name="moduleService">
 			<list>
-				<value>${project.parent.groupId}.${project.parent.artifactId}.api.RBCMessagingModuleService</value>
+				<value>${project.parent.groupId}.${project.parent.artifactId}.api.RBCMessagingService</value>
 				<bean
 					class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 					<property name="transactionManager">
 						<ref bean="transactionManager" />
 					</property>
 					<property name="target">
-						<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.RBCMessagingModuleServiceImpl">
+						<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.RBCMessagingServiceImpl">
 							<property name="dao">
-								<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernateRBCMessagingModuleDAO">
+								<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernateRBCMessagingDAO">
 									<property name="sessionFactory">
 										<ref bean="sessionFactory" />
 									</property>

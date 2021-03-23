@@ -13,18 +13,19 @@
  */
 package org.openmrs.module.rbcmessaging.api;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 /**
- * Tests {@link ${RBCMessagingModuleService}}.
+ * Tests {@link $ RBCMessagingModuleService} .
  */
 public class RBCMessagingModuleServiceTest extends BaseModuleContextSensitiveTest {
 	
 	@Test
 	public void shouldSetupContext() {
-		assertNotNull(Context.getService(RBCMessagingModuleService.class));
+		assertNotNull(Context.getService(RBCMessagingService.class));
 	}
 }

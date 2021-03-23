@@ -9,44 +9,54 @@
  */
 package org.openmrs.module.rbcmessaging;
 
-import org.openmrs.Cohort;
-
 /**
- * Representation of the message configuration object. It indicates the cohort
- * for which to send a message and the actual message to send.
+ * Representation of the message configuration object. It indicates the service for which to send
+ * appointment reminders, the number of days before the appointment day and the actual message to
+ * send.
  * 
  * @author Bailly RURANGIRWA
  */
-public class MessagingConfig {
-
-	private Cohort cohort;
-
+public class RBCMessagingConfig {
+	
+	private String serviceUUID;
+	
+	private int daysBefore;
+	
 	private String messageText;
-
-	public MessagingConfig() {
+	
+	public RBCMessagingConfig() {
 		super();
 	}
-
-	public MessagingConfig(Cohort cohort, String messageText) {
+	
+	public RBCMessagingConfig(String serviceUUID, int daysBefore, String messageText) {
 		super();
-		this.cohort = cohort;
+		this.serviceUUID = serviceUUID;
+		this.daysBefore = daysBefore;
 		this.messageText = messageText;
 	}
-
-	public Cohort getCohort() {
-		return cohort;
+	
+	public String getServiceUUID() {
+		return serviceUUID;
 	}
-
-	public void setCohort(Cohort cohort) {
-		this.cohort = cohort;
+	
+	public void setServiceUUID(String serviceUUID) {
+		this.serviceUUID = serviceUUID;
 	}
-
+	
+	public int getDaysBefore() {
+		return daysBefore;
+	}
+	
+	public void setDaysBefore(int daysBefore) {
+		this.daysBefore = daysBefore;
+	}
+	
 	public String getMessageText() {
 		return messageText;
 	}
-
+	
 	public void setMessageText(String messageText) {
 		this.messageText = messageText;
 	}
-
+	
 }
