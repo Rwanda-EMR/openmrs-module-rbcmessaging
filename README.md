@@ -1,4 +1,4 @@
-![alt tag](images/rbc-who.png)
+![alt tag](images/rbc-chai.png)
 
 -----
 
