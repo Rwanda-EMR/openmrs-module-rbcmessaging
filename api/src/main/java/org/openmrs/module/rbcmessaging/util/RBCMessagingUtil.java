@@ -64,37 +64,32 @@ public class RBCMessagingUtil {
 	}
 	
 	/**
-	 * Verify that the provided response was successful, and then copy the response to the given
-	 * output buffer.
-	 *
-	 * <p>If the response was not successful (e.g. not a "200 OK") status code, or the response
-	 * payload was empty, an {@link IOException} will be thrown.
-	 *
-	 * @param response
-	 *         A representation of the response from the server.
-	 * @param message
-	 *         The stream to which the response data will be written.
-	 *
-	 * @throws IOException
-	 *         If the response was unsuccessful, did not contain any data, or could not be written
-	 *         completely to the target output stream.
+	 * Verify that the provided response was successful, and then copy the response to the given output
+	 * buffer.
+	 * <p>
+	 * If the response was not successful (e.g. not a "200 OK") status code, or the response payload was
+	 * empty, an {@link IOException} will be thrown.
+	 * 
+	 * @param response A representation of the response from the server.
+	 * @param message The stream to which the response data will be written.
+	 * @throws IOException If the response was unsuccessful, did not contain any data, or could not be
+	 *             written completely to the target output stream.
 	 */
-	private static void processKeyResponse(CloseableHttpResponse response, RBCMessagingMessage message)
-	        throws IOException {
-	    final StatusLine statusLine = response.getStatusLine();
-
-	    if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-	        final HttpEntity responseEntity = response.getEntity();
-
-	        if (responseEntity == null) {
-	            throw new IOException("No response body returned.");
-	        } else {
-	            try (InputStream inputStream = responseEntity.getContent()) {
-	                ByteStreams.copy(inputStream, message);
-	            }
-	        }
-	    } else {
-	        throw new IOException("PGP server returned an error: " + statusLine);
-	    }
+	private static void processKeyResponse(CloseableHttpResponse response, RBCMessagingMessage message) throws IOException {
+		final StatusLine statusLine = response.getStatusLine();
+		
+		if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+			final HttpEntity responseEntity = response.getEntity();
+			
+			if (responseEntity == null) {
+				throw new IOException("No response body returned.");
+			} else {
+				try (InputStream inputStream = responseEntity.getContent()) {
+					/* ByteStreams.copy(inputStream, message); */
+				}
+			}
+		} else {
+			throw new IOException("PGP server returned an error: " + statusLine);
+		}
 	}
 }

@@ -48,7 +48,7 @@ public class RBCMessagingModuleManageController {
 	public ModelAndView exportModulesToFile(@RequestParam(required = false, value = "messageId") String messageId, @RequestParam(required = false, value = "resendType") String resendType, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		RBCMessagingMessage message = Context.getService(RBCMessagingService.class).getMessage(Integer.valueOf(messageId));
 		CloseableHttpResponse responseFromPost = RBCMessagingUtil.postMessage(message.getDestination(), message.getContent());
-		if(responseFromPost.getStatusLine().getStatusCode() == 0) {
+		if (responseFromPost.getStatusLine().getStatusCode() == 0) {
 			
 		}
 		Context.getService(RBCMessagingService.class).saveMessage(message);
