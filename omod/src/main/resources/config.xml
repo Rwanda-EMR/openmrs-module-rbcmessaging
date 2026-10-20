@@ -7,13 +7,19 @@
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
 	<package>org.openmrs.module.rbcmessaging</package>
-	<author>Bailly RURANGIRWA</author>
+	<author>MoH and PIH/IMB</author>
 	<description>
 		${project.parent.description}
 	</description>
 	<!-- <updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL> -->
 	<require_version>${openmrsPlatformVersion}</require_version>
 	<!-- / Module Properties -->
+
+	<require_modules>
+		<require_module version="${htmlformentryVersion}">org.openmrs.module.htmlformentry</require_module>
+		<require_module version="${uiframeworkVersion}">org.openmrs.module.uiframework</require_module>
+		<require_module version="${appuiVersion}">org.openmrs.module.appui</require_module>
+	</require_modules>
 
 	<!-- Module Activator -->
 	<activator>org.openmrs.module.rbcmessaging.RBCMessagingModuleActivator	</activator>
@@ -65,6 +71,81 @@
 		<defaultValue></defaultValue>
 		<description>RapidPro API Token</description>
 	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.gateway</property>
+		<defaultValue>fdibiz</defaultValue>
+		<description>SMS gateway implementation to use. Supported values are fdibiz and intouch.</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.mohpih.username</property>
+		<defaultValue></defaultValue>
+		<description>API UserName</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.mohpih.password</property>
+		<defaultValue></defaultValue>
+		<description>API password</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.mohpih.sender</property>
+		<defaultValue></defaultValue>
+		<description>SMS sender</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.mohpih.authorizationURL</property>
+		<defaultValue></defaultValue>
+		<description>API Authorization URL</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.mohpih.postURL</property>
+		<defaultValue></defaultValue>
+		<description>URL to post to</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.mohpih.appointmentDateConceptUUIDs</property>
+		<defaultValue></defaultValue>
+		<description>Concept UUID for Appointment Dates with coma separator(,)</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.mohpih.locationId</property>
+		<defaultValue></defaultValue>
+		<description>Location ID where sms notification has been started as pilot </description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.intouch.postURL</property>
+		<defaultValue></defaultValue>
+		<description>Intouch HTTP API send URL</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.intouch.username</property>
+		<defaultValue></defaultValue>
+		<description>Intouch account username</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.intouch.password</property>
+		<defaultValue></defaultValue>
+		<description>Intouch account password</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.intouch.sender</property>
+		<defaultValue></defaultValue>
+		<description>Intouch alphanumeric SMS sender</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.intouch.coding</property>
+		<defaultValue>0</defaultValue>
+		<description>Intouch message encoding value</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.intouch.deliveryReportURL</property>
+		<defaultValue></defaultValue>
+		<description>Optional callback URL that receives Intouch delivery reports</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.intouch.deliveryReportLevel</property>
+		<defaultValue>2</defaultValue>
+		<description>Intouch delivery report level: 1, 2, or 3</description>
+	</globalProperty>
 	
 	<globalProperty>
 		<property>rbcmessaging.phoneAttribute</property>
@@ -77,6 +158,26 @@
 		<defaultValue></defaultValue>
 		<description>Phone Country Code (eg. +251 For EThiopia or +250 For Rwanda)</description>
 	</globalProperty>
+
+
+
+	<globalProperty>
+		<property>rbcmessaging.mohpihncd.username</property>
+		<defaultValue></defaultValue>
+		<description>API UserName</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.mohpihncd.password</property>
+		<defaultValue></defaultValue>
+		<description>API password</description>
+	</globalProperty>
+	<globalProperty>
+		<property>rbcmessaging.mohpihncd.contactPhoneNumber</property>
+		<defaultValue></defaultValue>
+		<description>contact Phone Number to be added at the end of sms </description>
+	</globalProperty>
+
+
 
 	<!-- Internationalization -->
 	<!-- All message codes should start with ${project.parent.artifactId}. -->
@@ -95,4 +196,3 @@
 	<!-- /Internationalization -->
 
 </module>
-

@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,17 +25,28 @@ import org.apache.http.auth.AuthenticationException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.openmrs.Person;
+import org.openmrs.Patient;
+import org.openmrs.PersonAttribute;
 import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.rbcmessaging.api.RBCMessagingService;
 import org.openmrs.module.rbcmessaging.api.db.RBCMessagingDAO;
 import org.openmrs.module.rbcmessaging.domain.RBCMessagingMessage;
+import org.openmrs.module.rbcmessaging.sms.SmsGateway;
+import org.openmrs.module.rbcmessaging.sms.SmsGatewayFactory;
+import org.openmrs.module.rbcmessaging.sms.SmsMessage;
+import org.openmrs.module.rbcmessaging.sms.SmsResult;
 import org.openmrs.module.rbcmessaging.util.RBCMessagingUtil;
+import org.openmrs.api.context.Context;
 
 /**
  * It is a default implementation of {@link RBCMessagingService}.
  */
 public class RBCMessagingServiceImpl extends BaseOpenmrsService implements RBCMessagingService {
+	
+	private static final String PHONE_ATTRIBUTE_PROPERTY = "rbcmessaging.phoneAttribute";
+	
+	private static final String DEFAULT_PHONE_ATTRIBUTE = "Phone number";
 	
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
@@ -52,6 +64,51 @@ public class RBCMessagingServiceImpl extends BaseOpenmrsService implements RBCMe
 	 */
 	public RBCMessagingDAO getDao() {
 		return dao;
+	}
+	
+	@Override
+	public SmsResult sendSms(Patient patient, String message) throws APIException {
+		if (patient == null) {
+			throw new APIException("A patient is required to send an SMS");
+		}
+		
+		String phoneAttributeName = getPhoneAttributeName();
+		PersonAttribute phoneAttribute = patient.getAttribute(phoneAttributeName);
+		if (phoneAttribute == null || isBlank(phoneAttribute.getValue())) {
+			throw new APIException("Patient " + patient.getPatientId() + " has no value for person attribute '" + phoneAttributeName + "'");
+		}
+		return sendSms(phoneAttribute.getValue(), message);
+	}
+	
+	@Override
+	public SmsResult sendSms(String phoneNumber, String message) throws APIException {
+		if (isBlank(phoneNumber)) {
+			throw new APIException("A destination phone number is required");
+		}
+		if (isBlank(message)) {
+			throw new APIException("An SMS message is required");
+		}
+		
+		try {
+			SmsMessage smsMessage = new SmsMessage(phoneNumber.trim(), message, UUID.randomUUID().toString());
+			return createSmsGateway().send(smsMessage);
+		}
+		catch (IOException e) {
+			throw new APIException("Unable to send SMS through the configured vendor", e);
+		}
+	}
+	
+	protected SmsGateway createSmsGateway() {
+		return SmsGatewayFactory.create(Context.getAdministrationService());
+	}
+	
+	protected String getPhoneAttributeName() {
+		String configuredName = Context.getAdministrationService().getGlobalProperty(PHONE_ATTRIBUTE_PROPERTY);
+		return isBlank(configuredName) ? DEFAULT_PHONE_ATTRIBUTE : configuredName.trim();
+	}
+	
+	private boolean isBlank(String value) {
+		return value == null || value.trim().isEmpty();
 	}
 	
 	public List<RBCMessagingMessage> getAllMessages() {

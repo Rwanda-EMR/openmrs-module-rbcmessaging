@@ -39,12 +39,12 @@ public class RBCMessagingModuleManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	@RequestMapping(value = "/module/rbcmessaging/manage", method = RequestMethod.GET)
+	@RequestMapping(value = { "/module/rbcmessaging/manage", "/module/rbcmessaging/manage.form" }, method = RequestMethod.GET)
 	public void manage(ModelMap model) {
 		model.addAttribute("messages", Context.getService(RBCMessagingService.class).getAllMessages());
 	}
 	
-	@RequestMapping("/module/rbcmessaging/resend")
+	@RequestMapping({ "/module/rbcmessaging/resend", "/module/rbcmessaging/resend.form" })
 	public ModelAndView exportModulesToFile(@RequestParam(required = false, value = "messageId") String messageId, @RequestParam(required = false, value = "resendType") String resendType, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		RBCMessagingMessage message = Context.getService(RBCMessagingService.class).getMessage(Integer.valueOf(messageId));
 		CloseableHttpResponse responseFromPost = RBCMessagingUtil.postMessage(message.getDestination(), message.getContent());

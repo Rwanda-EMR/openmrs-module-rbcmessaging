@@ -26,3 +26,11 @@ omod/.project
 omod/.settings/*
 omod/target/*
 /.settings
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx

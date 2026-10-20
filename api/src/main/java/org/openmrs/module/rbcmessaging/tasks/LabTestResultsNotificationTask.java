@@ -7,7 +7,7 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-package org.openmrs.module.rbcmessaging.scheduler.tasks;
+package org.openmrs.module.rbcmessaging.tasks;
 
 import org.openmrs.api.context.Context;
 import org.openmrs.module.rbcmessaging.api.RBCMessagingService;

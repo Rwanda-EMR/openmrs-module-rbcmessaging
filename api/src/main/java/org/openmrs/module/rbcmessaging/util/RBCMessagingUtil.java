@@ -59,6 +59,7 @@ public class RBCMessagingUtil {
 		
 		CloseableHttpClient client = HttpClients.createDefault();
 		CloseableHttpResponse response = client.execute(httpPost);
+		
 		client.close();
 		return response;
 	}
