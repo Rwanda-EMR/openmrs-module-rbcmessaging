@@ -10,15 +10,15 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>rbcmessaging</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>RBC Messaging Module Module</name>
-	<description>The RBC messaging module allows you to send SMS, initially via RapidPro.</description>
+	<name>Module to notify patients</name>
+	<description>A module to notify patients with SMS</description>
 	<url>https://wiki.openmrs.org/display/docs/RBC+Messaging+Module+Module+Module</url>
 
 	<developers>
 		<developer>
-			<name>Bailly RURANGIRWA</name>
+			<name>MoH and PIH/IMB</name>
 		</developer>
 	</developers>
 
@@ -62,7 +62,12 @@
 	</pluginRepositories>
 
 	<properties>
-		<openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
+		<openmrsPlatformVersion>2.3.2</openmrsPlatformVersion>
+		<openMRSVersion>2.3.2</openMRSVersion>
+		<legacyUiVersion>1.9.0</legacyUiVersion>
+		<htmlformentryVersion>4.0.0</htmlformentryVersion>
+		<uiframeworkVersion>4.0.0</uiframeworkVersion>
+		<appuiVersion>1.16.0</appuiVersion>
 	</properties>
 
 	<dependencies>
@@ -74,12 +79,30 @@
 			<version>4.5.4</version>
 		</dependency>
 
-		<dependency>
+<!--		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.10</version>
+		</dependency>-->
+		<dependency>
+			<groupId>org.openmrs</groupId>
+			<artifactId>openmrs</artifactId>
+			<version>${openMRSVersion}</version>
+			<type>pom</type>
+			<scope>import</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>legacyui-omod</artifactId>
+			<version>${legacyUiVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>htmlformentry-api</artifactId>
+			<version>${htmlformentryVersion}</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 

@@ -45,6 +45,7 @@ public class AdminList extends AdministrationSectionExt {
 	public Map<String, String> getLinks() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("/module/rbcmessaging/manage.form", "rbcmessaging.manage");
+		map.put("/rbcmessaging/smsConfiguration.page", "rbcmessaging.vendorConfiguration");
 		return map;
 	}
 	

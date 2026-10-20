@@ -24,9 +24,13 @@
 
 	 
 	<!-- Annotation based controllers -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+	<!--<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>-->
 	
 	<context:component-scan base-package="org.openmrs.module.rbcmessaging.web.controller" />
+
+	<bean class="org.openmrs.ui.framework.StandardModuleUiConfiguration">
+		<property name="moduleId" value="${project.parent.artifactId}" />
+	</bean>
  
 		
 </beans>
