@@ -13,7 +13,7 @@ Add the API artifact to the consuming module:
 <dependency>
     <groupId>org.openmrs.module</groupId>
     <artifactId>rbcmessaging-api</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <scope>provided</scope>
 </dependency>
 ```
