@@ -64,12 +64,12 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<openMRSVersion>2.3.2</openMRSVersion>
+		<openMRSVersion>2.8.7</openMRSVersion>
 		<openmrsPlatformVersion>${openMRSVersion}</openmrsPlatformVersion>
-		<legacyUiVersion>1.9.0</legacyUiVersion>
-		<htmlformentryVersion>4.0.0</htmlformentryVersion>
+		<legacyUiVersion>2.1.0</legacyUiVersion>
+		<htmlformentryVersion>7.1.0</htmlformentryVersion>
 		<uiframeworkVersion>4.0.0</uiframeworkVersion>
-		<appuiVersion>1.16.0</appuiVersion>
+		<appuiVersion>1.18.0</appuiVersion>
 		<httpclientVersion>4.5.4</httpclientVersion>
 	</properties>
 
